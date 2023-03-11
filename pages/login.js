@@ -2,7 +2,8 @@ import { signIn } from "next-auth/react"
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { authOptions } from "./api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
+import LayoutFront from "components/layoutfront";
 
 export default function Login() {
 
@@ -43,6 +44,7 @@ export default function Login() {
     }
     
     return (
+        <LayoutFront>
     <div className="container">
         <div className="p-5 form-login border border-primary ">
             <form onSubmit={handleSubmit} >
@@ -72,13 +74,14 @@ export default function Login() {
         </div>
     
     </div>
+    </LayoutFront>
         
     )
 }
 
 export async function getServerSideProps(context) {
 
-    const session = await unstable_getServerSession(context.req, context.res, authOptions)
+    const session = await getServerSession(context.req, context.res, authOptions)
     ;
     console.log(session) 
     

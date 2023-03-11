@@ -1,14 +1,14 @@
 import { dbConnect } from "utils/mongoose";
 import equipos from "models/equipos"
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 
 dbConnect();
 
-export default async (req, res) => {
+export default async function handler (req, res) {
     
-    const session = await unstable_getServerSession(req, res, authOptions)
-
+    const session = await getServerSession(req, res, authOptions)
+   
     const { method, body } = req;
   
     switch (method) {

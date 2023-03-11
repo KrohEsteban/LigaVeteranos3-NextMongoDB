@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { authOptions } from "pages/api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import LayoutAdmin from "components/layoutadmin";
 import upfirst from "components/upfirst";
 
-export default function equipos({categorias}) {
+export default function Equipos({categorias}) {
 
     const [equipo, setEquipo] = useState({});
     const [error, setError] = useState({});
@@ -45,19 +45,19 @@ export default function equipos({categorias}) {
               },
               body: JSON.stringify(parabd),
             })
-            .then((res) => res.json())
+            .then((res) =>res.json())
             .then((data) => {
                 if(data._id!==undefined){
-                   router.push("/admin") 
+                    alert("El Equipo se guardo correctamente")   
+                }else{
+                    setError(data)
                 }
-                setError(data)
-            });
+            })
           } catch (error) {
             console.error(error.msg);
           }
         
     }
-    
     return (
     <LayoutAdmin>
         <div className="p-5 form-login border border-primary ">
@@ -73,13 +73,14 @@ export default function equipos({categorias}) {
                    
                     <label className="form-label"> 
                         Categoría 
-                        <select class="form-select mt-2" name="categoria" onChange={handleChange} aria-label="Select para categoría">
-                            <option selected> Elegir categoría</option>
-                            {categorias.map
+                        <select className="form-select mt-2" name="categoría" onChange={handleChange} aria-label="Select para categoría">
+                            <option value="" > Elegir categoría</option>
+                            {categorias.map((item)=>{
+                                return <option key={item._id} value={item.nombre}>{item.nombre}</option>
+                            })
 
-                            }<option value="Hola">One</option>
-                            <option value="2">Two</option>
-                            <option value="3">Three</option>
+                            }
+                           
                         </select>
                         
                     </label>
@@ -166,7 +167,7 @@ export default function equipos({categorias}) {
 
 export async function getServerSideProps(context) {
 
-    const session = await unstable_getServerSession(context.req, context.res, authOptions);
+    const session = await getServerSession(context.req, context.res, authOptions);
     const rescategorias = await fetch(process.env.NEXTAUTH_URL + "/api/categorias");
     const categorias = await rescategorias.json();
 

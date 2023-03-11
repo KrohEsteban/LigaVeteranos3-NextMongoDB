@@ -1,11 +1,11 @@
 import LayoutAdmin from 'components/layoutadmin'
 import upfirst from 'components/upfirst';
-import { unstable_getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth';
 import { useRouter } from 'next/router';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
 import React, { useState } from 'react'
 
-export default function categoria({categorias}) {
+export default function Categoria({categorias}) {
 
   const [categoria, setCategoria] = useState({});
   const [paraborrar, setParaborrar] = useState({});
@@ -99,7 +99,7 @@ export default function categoria({categorias}) {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="ModalAgregarCategorias">Agregar nueva categoría</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" onClick={()=>{setParaborrar({})}} data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
             <form onSubmit={handleSubmit} >
@@ -113,7 +113,7 @@ export default function categoria({categorias}) {
                 </div>
             
             <div className="modal-footer">
-              <button className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              
               <button type="submit" className="btn btn-primary" data-bs-dismiss="modal">Enviar</button>
             </div>
             </form>
@@ -128,7 +128,7 @@ export default function categoria({categorias}) {
           <div className="modal-content">
             <div className="modal-header">
               <h1 className="modal-title fs-5" id="ModalBorrarCategorias">Borrar categoría</h1>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" onClick={()=>{setParaborrar({})}} data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div className="modal-body">
             <form onSubmit={handleSubmitforDelete} >
@@ -142,7 +142,7 @@ export default function categoria({categorias}) {
                 </div>
                 
             <div className="modal-footer">
-              <button className="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              
               <button type="submit"  className="btn btn-primary" data-bs-dismiss="modal">Enviar</button>
             </div>
             </form>
@@ -159,7 +159,7 @@ export default function categoria({categorias}) {
 
 export async function getServerSideProps(context) {
 
-  const session = await unstable_getServerSession(context.req, context.res, authOptions);
+  const session = await getServerSession(context.req, context.res, authOptions);
   const rescategorias = await fetch(process.env.NEXTAUTH_URL + "/api/categorias");
   const categorias = await rescategorias.json();
 

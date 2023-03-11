@@ -14,21 +14,29 @@ const jugadoresSchema = new Schema(
         trim: true, // elimina los espacios de mas antes y despues de la palabra
         maxlength: [40, "El nombre no puede tener mas de 40 caracteres"],
       },
+    equipo: {
+        type: String,
+        required: [true, "El equipo del jugador es requerido"],
+        trim: true, // elimina los espacios de mas antes y despues de la palabra
+      }, 
+    categoría: {
+        type: String,
+        required: [true, "La categoría del jugador es requerida"],
+        trim: true, // elimina los espacios de mas antes y despues de la palabra
+      }, 
     goles: {
         type: Number,
         required: false,
         trim: true,
       },
     fechasancion: {
-        type: String,
+        type: Number,
         required: false,
-        unique: true, // unico
         trim: true, // elimina los espacios de mas antes y despues de la palabra
       },
     sancion: {
-        type: String,
+        type: Number,
         required: false,
-        unique: true, // unico
         trim: true, // elimina los espacios de mas antes y despues de la palabra
       },
   },

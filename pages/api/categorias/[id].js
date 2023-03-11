@@ -1,14 +1,14 @@
 import { dbConnect } from "utils/mongoose";
 import categorias from "models/categorias";
 import { authOptions } from "../auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 
 
 dbConnect();
 
 export default async function equipoHandler(req, res) {
 
-  const session = await unstable_getServerSession(req, res, authOptions)
+  const session = await getServerSession(req, res, authOptions)
   const { method, body, query: { id }} = req;
 
   switch (method) {

@@ -1,14 +1,14 @@
 import { dbConnect } from "utils/mongoose";
 import jugadores from "models/jugadores";
-import { authOptions } from "./api/auth/[...nextauth]";
-import { unstable_getServerSession } from "next-auth";
+import { authOptions } from "../auth/[...nextauth]";
+import { getServerSession } from "next-auth";
 
 
 dbConnect();
 
-export default async function equipoHandler(req, res) {
+export default async function handler(req, res) {
 
-  const session = await unstable_getServerSession(req, res, authOptions)
+  const session = await getServerSession(req, res, authOptions)
   const { method, body, query: { id }} = req;
 
   switch (method) {
@@ -38,7 +38,7 @@ export default async function equipoHandler(req, res) {
           new: true,
           runValidators: true,
         });
-        if (!categoria) return res.status(404).json({ msg: "Equipo no existe" });
+        if (!jugador) return res.status(404).json({ msg: "Equipo no existe" });
         return res.status(200).json(jugador);
       } catch (error) {
         if (error.name === "ValidationError") {

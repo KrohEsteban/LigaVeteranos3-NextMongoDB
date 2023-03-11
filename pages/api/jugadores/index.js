@@ -1,13 +1,13 @@
 import { dbConnect } from "utils/mongoose";
 import jugadores from "models/jugadores"
-import { unstable_getServerSession } from "next-auth";
+import { getServerSession } from "next-auth";
 import { authOptions } from "../auth/[...nextauth]";
 
 dbConnect();
 
-export default async (req, res) => {
+export default async function handler (req, res) {
     
-    const session = await unstable_getServerSession(req, res, authOptions)
+    const session = await getServerSession(req, res, authOptions)
 
     const { method, body } = req;
   
@@ -34,7 +34,9 @@ export default async (req, res) => {
             return res.status(401).json({ msg: "Debes estar logeado" });
           }
           const nuevojugador = new jugadores(body);
+          
           const jugadorguardado = await nuevojugador.save();
+          console.log(jugadorguardado)
           return res.status(201).json(jugadorguardado);
         } catch (error) {
           if (error.name === "ValidationError") {

@@ -2,34 +2,39 @@ import { Schema, model, models } from "mongoose";
 
 const partidosSchema = new Schema(
   {
-    title: {
-        type: String,
-        required: true,
-        trim: true, // elimina los espacios de mas antes y despues de la palabra
-    },
     fecha: {
-        type: String,
-        required: true,
+        type: Number,
+        required:[true, "La fecha es requerida"],
         trim: true, // elimina los espacios de mas antes y despues de la palabra
     },
+    dia: {
+      type: String,
+      required:false,
+      trim: true, // elimina los espacios de mas antes y despues de la palabra
+  },
+    hora: {
+      type: String,
+      required:false,
+      trim: true, // elimina los espacios de mas antes y despues de la palabra
+  },
     lugar: {
         type: String,
-        required: false,
+        required: [true, "El lugar es requerido"],
         trim: true, // elimina los espacios de mas antes y despues de la palabra
     },
     categoría: {
         type: String,
-        required: true,
+        required: [true, "El nombre de la categoría es requerido"],
         trim: true, // elimina los espacios de mas antes y despues de la palabra
     },
     equipo1: {
       type: String,
-      required: true,
+      required: [true, "El nombre del primer equipo es requerido"],
       trim: true, // elimina los espacios de mas antes y despues de la palabra
     },
     equipo2: {
         type: String,
-        required: true,
+        required: [true, "El nombre del segundo equipo es requerido"],
         trim: true, // elimina los espacios de mas antes y despues de la palabra
     },
     golesequipo1: {

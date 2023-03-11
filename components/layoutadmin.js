@@ -8,7 +8,7 @@ export default function LayoutAdmin({ children }) {
         <nav className="navbar-expand-lg navbar navbar-dark bg-primary ">
             <div className="container">
                 <div className='col'>    
-                    <a className="navbar-brand" href="#">Liga de Veteranos</a>
+                    <Link className="navbar-brand" href="#">Liga de Veteranos</Link>
                 </div>
                 <div className='col-auto'>     
                     
@@ -20,22 +20,22 @@ export default function LayoutAdmin({ children }) {
                     <div className="collapse navbar-collapse "  id="navbarSupportedContent">
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0 ">
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin"><a className="nav-link active ">Home</a></Link>
+                                <Link className="nav-link active" href="/admin">Home</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin/categoria"><a className="nav-link active">Categorías</a></Link>
+                                <Link className="nav-link active" href="/admin/categoria">Categorías</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin/equipos"><a className="nav-link active">Equipos</a></Link>
+                                <Link className="nav-link active" href="/admin/equipos">Equipos</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin/partidos"><a className="nav-link active">Partidos</a></Link>
+                                <Link className="nav-link active" href="/admin/partidos">Partidos</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin/jugadores"><a className="nav-link active">Jugadors</a></Link>
+                                <Link className="nav-link active" href="/admin/jugadores">Jugadores</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link href="/admin/jugadores"><a className="nav-link active"><button className='btn btn-light' onClick={() => signOut()}>Salir</button></a></Link>
+                                <Link className="nav-link active" href="/admin/jugadores"><button className='btn btn-light' onClick={() => signOut()}>Salir</button></Link>
                             </li>
                         </ul>
                     </div>

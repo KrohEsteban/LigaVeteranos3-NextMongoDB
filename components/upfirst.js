@@ -1,6 +1,7 @@
 
-export default function upfirst(palabra) {
+export default function upfirst(text) {
     
+    const palabra = text.toLowerCase();
     const arr = palabra.split(" ");
 
     for (var i = 0; i < arr.length; i++) {
