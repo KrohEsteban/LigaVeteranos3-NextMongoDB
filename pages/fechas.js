@@ -5,6 +5,7 @@ import Col from 'react-bootstrap/Col';
 import Button from 'react-bootstrap/Button';
 import { ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import LayoutFront from "components/layoutfront";
+import { fetchData } from "next-auth/client/_utils";
 
 
 
@@ -226,13 +227,13 @@ export default function Fechas({datacategoria, data}) {
     )
 };
 
-export async function getServerSideProps(context) {
+  export async function getServerSideProps(context) {
 
-    const respartidos = await fetch(process.env.NEXTAUTH_URL + "/api/partidos");
+  const respartidos = await fetch(process.env.NEXTAUTH_URL + "/api/partidos");
     const data = await respartidos.json();
     const rescategorias = await fetch(process.env.NEXTAUTH_URL + "/api/categorias");
     const datacategoria = await rescategorias.json();
-  
+   
     return { 
       props: {
         datacategoria,

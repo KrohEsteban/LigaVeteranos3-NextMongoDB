@@ -5,7 +5,6 @@ import LayoutFront from "components/layoutfront";
 
 
 
-
 export default function Goleadores({data}) {
     
     
@@ -120,3 +119,4 @@ export async function getServerSideProps(context) {
         };
     
 }
+
