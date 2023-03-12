@@ -17,8 +17,18 @@ export default function Fechas({datacategoria, data}) {
 
     //contador para ver si no encuentra ningun partido dentro del arreglo con la categoria que eligio
     let haypartidos=0; 
+    
+    // recolectamos las fechas para mostrar 
+    let fech= new Set(); // si se repite no lo agrega al arreglo
+    data.forEach((item)=>{
+        fech.add(item.fecha)
+    })
+    const fechas=[...fech]; // asignamos el set a un arreglo para poder mapear
 
-        
+    // ordena el arreglo
+    fechas.sort(function(a, b) {
+        return a - b;
+      });
      
     function ajustarcategoria(nuevacategoria){
 
@@ -93,12 +103,12 @@ export default function Fechas({datacategoria, data}) {
                     <ButtonGroup size="lg" className="buttonfecha">
                         <Button className="text-nowrap boton" onClick={()=>ajustarfecha("Todas")} >Mostrar todos</Button>
                
-                        {data.map((item)=>{
+                        {fechas.map((item)=>{
                             
 
                             return(
                                 
-                                <Button className="boton" key={item._id} onClick={()=>ajustarfecha(item.fecha)} >{item.fecha}</Button> 
+                                <Button className="boton" key={item} onClick={()=>ajustarfecha(item)} >{item}</Button> 
                                 
                             )
                         })}
