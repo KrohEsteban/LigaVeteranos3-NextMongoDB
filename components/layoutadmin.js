@@ -35,7 +35,7 @@ export default function LayoutAdmin({ children }) {
                                 <Link className="nav-link active" href="/admin/jugadores">Jugadores</Link>
                             </li>
                             <li className="nav-item d-flex align-items-center">
-                                <Link className="nav-link active" href="/admin/jugadores"><button className='btn btn-light' onClick={() => signOut()}>Salir</button></Link>
+                                <Link className="nav-link active" href="/admin/jugadores"><button className='btn btn-light' onClick={() => signOut({ callbackUrl: "/"})}>Salir</button></Link>
                             </li>
                         </ul>
                     </div>
